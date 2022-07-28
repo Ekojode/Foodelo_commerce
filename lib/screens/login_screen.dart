@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../screens/signup_screen.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -138,13 +140,18 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: size.height * 0.08,
               ),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Get.offAllNamed(SignUpScreen.routeName);
+                },
                 child: Center(
                   child: RichText(
                     text: TextSpan(
-                      style: const TextStyle(color: Colors.grey),
+                      style: const TextStyle(
+                        color: Colors.grey,
+                        fontSize: 16,
+                      ),
                       children: [
-                        const TextSpan(text: "New to Kide Commerce? "),
+                        const TextSpan(text: "New to Foodelo Commerce? "),
                         TextSpan(
                             text: "Register",
                             style: TextStyle(

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import './screens.dart/login_screen.dart';
+import "package:get/get.dart";
+import './screens/login_screen.dart';
+import './screens/signup_screen.dart';
 
 //import './screens.dart/home_screen.dart';
 
@@ -12,11 +14,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Foodelo Commerce',
       theme: ThemeData(),
       home: const LoginScreen(),
+      getPages: [
+        GetPage(name: LoginScreen.routeName, page: () => const LoginScreen()),
+        GetPage(name: SignUpScreen.routeName, page: () => const SignUpScreen()),
+      ],
     );
   }
 }
