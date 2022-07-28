@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:foodelo_commerce/widgets/auth_email.dart';
+import 'package:foodelo_commerce/widgets/auth_password.dart';
 import 'package:get/get.dart';
 
 import '../screens/signup_screen.dart';
+import '../widgets/auth_header_text.dart';
+import '../widgets/auth_image.dart';
+import '../widgets/auth_switcher.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -13,7 +18,6 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  bool _isObscure = true;
   @override
   Widget build(BuildContext context) {
     var size = Get.size;
@@ -22,78 +26,22 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Container(
           margin: const EdgeInsets.symmetric(horizontal: 15),
           child: Column(
-            //   mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              SizedBox(
-                height: size.height * 0.025,
-              ),
-              SizedBox(
-                height: size.height * 0.4,
-                child: Center(
-                  child: Container(
-                    margin: const EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(15),
-                      child: Image.asset(
-                        "assets/images/loginpic.jpg",
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
+              SizedBox(height: size.height * 0.025),
+              AuthImage(
+                  size: size.height * 0.04,
+                  imagePath: "assets/images/loginpic.jpg"),
               SizedBox(
                 height: size.height * 0.25,
                 width: double.infinity,
                 child: SingleChildScrollView(
                   child: Form(
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          "Login",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 30),
-                        ),
-                        TextFormField(
-                          decoration: const InputDecoration(
-                            icon: Icon(
-                              Icons.email_outlined,
-                              color: Colors.black,
-                            ),
-                            enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: Colors.black),
-                            ),
-                            hintText: "Enter your email",
-                          ),
-                        ),
-                        TextFormField(
-                          decoration: InputDecoration(
-                              icon: const Icon(
-                                Icons.lock_outline,
-                                color: Colors.black,
-                              ),
-                              enabledBorder: const UnderlineInputBorder(
-                                borderSide: BorderSide(color: Colors.black),
-                              ),
-                              suffixIcon: IconButton(
-                                onPressed: () {
-                                  setState(() {
-                                    _isObscure = !_isObscure;
-                                  });
-                                },
-                                icon: Icon(_isObscure
-                                    ? Icons.visibility
-                                    : Icons.visibility_off),
-                                color: Colors.black,
-                              ),
-                              hintText: "Enter your password"),
-                          obscureText: _isObscure,
-                        ),
+                        const AuthHeader(text: "Log In"),
+                        const AuthEmail(),
+                        const Password(hintText: "Enter your password"),
                         Container(
                           alignment: Alignment.centerRight,
                           child: TextButton(
@@ -139,29 +87,12 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(
                 height: size.height * 0.08,
               ),
-              GestureDetector(
-                onTap: () {
-                  Get.offAllNamed(SignUpScreen.routeName);
-                },
-                child: Center(
-                  child: RichText(
-                    text: TextSpan(
-                      style: const TextStyle(
-                        color: Colors.grey,
-                        fontSize: 16,
-                      ),
-                      children: [
-                        const TextSpan(text: "New to Foodelo Commerce? "),
-                        TextSpan(
-                            text: "Register",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.blue.shade700))
-                      ],
-                    ),
-                  ),
-                ),
-              ),
+              AuthSwitcher(
+                  fucntion: () {
+                    Get.offAllNamed(SignUpScreen.routeName);
+                  },
+                  initialText: "New to Foodelo Commerce",
+                  finalText: "Register"),
             ],
           ),
         ),
