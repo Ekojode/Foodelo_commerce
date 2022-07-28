@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foodelo_commerce/widgets/auth_actiona.dart';
+import 'package:foodelo_commerce/widgets/action_button.dart';
 import 'package:foodelo_commerce/widgets/auth_cred.dart';
 import 'package:foodelo_commerce/widgets/auth_password.dart';
 import 'package:get/get.dart';
@@ -138,7 +138,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
               ),
               !_isLoading
-                  ? AuthAction(onPressed: _submit, actionText: "Sign Up")
+                  ? ActionButton(onPressed: _submit, actionText: "Sign Up")
                   : const Center(
                       child: CircularProgressIndicator(),
                     ),
