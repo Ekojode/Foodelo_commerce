@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:foodelo_commerce/widgets/auth_email.dart';
+import 'package:foodelo_commerce/widgets/auth_cred.dart';
 import 'package:foodelo_commerce/widgets/auth_password.dart';
 import 'package:get/get.dart';
 
@@ -18,6 +18,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final _emailConntrol = TextEditingController();
+  final _passwordControl = TextEditingController();
   @override
   Widget build(BuildContext context) {
     var size = Get.size;
@@ -29,7 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               SizedBox(height: size.height * 0.025),
               AuthImage(
-                  size: size.height * 0.04,
+                  size: size.height * 0.4,
                   imagePath: "assets/images/loginpic.jpg"),
               SizedBox(
                 height: size.height * 0.25,
@@ -40,8 +42,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const AuthHeader(text: "Log In"),
-                        const AuthEmail(),
-                        const Password(hintText: "Enter your password"),
+                        AuthCred(
+                          controller: _emailConntrol,
+                          hintText: "Enter your email",
+                          icon: Icons.email,
+                        ),
+                        Password(
+                            hintText: "Enter your password",
+                            controller: _passwordControl),
                         Container(
                           alignment: Alignment.centerRight,
                           child: TextButton(

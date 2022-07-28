@@ -2,8 +2,16 @@ import 'package:flutter/material.dart';
 
 class Password extends StatefulWidget {
   final String hintText;
-  const Password({Key? key, required, required this.hintText})
-      : super(key: key);
+  final String? Function(String?)? validator;
+
+  final TextEditingController? controller;
+  const Password({
+    Key? key,
+    required,
+    required this.hintText,
+    this.validator,
+    this.controller,
+  }) : super(key: key);
 
   @override
   State<Password> createState() => _PasswordState();
@@ -14,6 +22,8 @@ class _PasswordState extends State<Password> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator: widget.validator,
+      controller: widget.controller,
       decoration: InputDecoration(
           icon: const Icon(
             Icons.lock,
