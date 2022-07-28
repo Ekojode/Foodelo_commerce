@@ -1,23 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/src/foundation/key.dart';
+import 'package:flutter/src/widgets/framework.dart';
 
-class TextForm extends StatefulWidget {
-  final IconData icon;
-  final String hint;
-  const TextForm({Key? key, required this.icon, required this.hint})
-      : super(key: key);
+class TextFormStyle extends StatelessWidget {
+  const TextFormStyle({Key? key}) : super(key: key);
 
-  @override
-  State<TextForm> createState() => _TextFormState();
-}
-
-class _TextFormState extends State<TextForm> {
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      decoration: InputDecoration(
-        icon: Icon(widget.icon),
-        hintText: widget.hint,
-      ),
-    );
+    return InputDecoration();
   }
 }
